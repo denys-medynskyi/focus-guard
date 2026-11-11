@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Focus Guard</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="popup-shell">
+      <header class="popup-header">
+        <div>
+          <p class="brand-kicker">Focus Guard</p>
+          <h1>Protect your attention</h1>
+        </div>
+        <label class="switch" aria-label="Enable website blocking">
+          <input id="enabled" type="checkbox" />
+          <span class="switch-track"></span>
+        </label>
+      </header>
+      <section class="suggestion" aria-live="polite">
+        <p class="section-label">Current website</p>
+        <p id="current-host" class="current-host">Checking this tab…</p>
+        <button id="block-current" class="primary-button" type="button" disabled>Block this website</button>
+      </section>
+      <section class="blocked-section">
+        <div class="list-heading">
+          <p class="section-label">Blocked websites</p>
+          <span id="site-count" class="site-count">0</span>
+        </div>
+        <p id="empty-state" class="empty-state">No sites blocked yet.</p>
+        <ul id="blocked-list" class="blocked-list"></ul>
+      </section>
+      <section class="blocked-section">
+        <div class="list-heading">
+          <p class="section-label">Exclusions</p>
+          <span id="exclusion-count" class="site-count">0</span>
+        </div>
+        <p class="hint">Always allowed, even when a parent domain is blocked (e.g. music.youtube.com).</p>
+        <form id="exclusion-form" class="add-form">
+          <input id="exclusion-input" type="text" placeholder="music.youtube.com" aria-label="Website to exclude" autocomplete="off" spellcheck="false" />
+          <button class="secondary-button" type="submit">Add</button>
+        </form>
+        <p id="exclusion-error" class="form-error" hidden>Enter a valid domain, e.g. music.youtube.com</p>
+        <ul id="exclusion-list" class="blocked-list"></ul>
+      </section>
+    </main>
+    <script src="shared.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

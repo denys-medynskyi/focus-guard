@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "Focus Guard",
+  "version": "2.0.0",
+  "description": "Block distracting websites and replace them with a moment of motivation.",
+  "icons": {
+    "16": "assets/icon-16.png",
+    "32": "assets/icon-32.png",
+    "48": "assets/icon-48.png",
+    "128": "assets/icon-128.png"
+  },
+  "permissions": ["storage", "unlimitedStorage", "tabs"],
+  "host_permissions": ["<all_urls>"],
+  "background": { "service_worker": "background.js" },
+  "action": {
+    "default_title": "Focus Guard",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "assets/icon-16.png",
+      "32": "assets/icon-32.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["shared.js", "content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["blocked.html", "blocked.js", "styles.css", "assets/*.svg"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
